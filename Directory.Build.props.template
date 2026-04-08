@@ -1,0 +1,25 @@
+<Project>
+  <!--
+    SETUP: Copy this file to "Directory.Build.props" (same folder) and fill in your paths.
+    Directory.Build.props is gitignored — it is machine-specific and should not be committed.
+
+    To find your paths:
+      GameManagedPath : <DSP install>\DSPGAME_Data\Managed
+      BepInExCorePath : <DSP install>\BepInEx\core   (if using r2modman, check your profile folder)
+
+    Example (r2modman on D: drive):
+      GameManagedPath = D:\SteamLibrary\steamapps\common\Dyson Sphere Program\DSPGAME_Data\Managed
+      BepInExCorePath = C:\Users\YOU\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\Default\BepInEx\core
+
+    After filling in paths, run once to generate the publicized assembly:
+      dotnet tool install -g BepInEx.AssemblyPublicizer.Cli
+      assembly-publicizer "<GameManagedPath>\Assembly-CSharp.dll" --output "<GameManagedPath>\publicized_assemblies\Assembly-CSharp_publicized.dll"
+
+    Then build:
+      dotnet build DSPCruiseAssist.csproj -c Release
+  -->
+  <PropertyGroup>
+    <GameManagedPath>C:\Program Files (x86)\Steam\steamapps\common\Dyson Sphere Program\DSPGAME_Data\Managed</GameManagedPath>
+    <BepInExCorePath>C:\Program Files (x86)\Steam\steamapps\common\Dyson Sphere Program\BepInEx\core</BepInExCorePath>
+  </PropertyGroup>
+</Project>

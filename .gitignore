@@ -340,6 +340,9 @@ ASALocalRun/
 healthchecksdb
 バックアップ/
 
+# Local machine-specific build config (copy from Directory.Build.props.template)
+Directory.Build.props
+
 
 DSPAutoSorter.dll
 
