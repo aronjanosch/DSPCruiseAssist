@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 using UnityEngine;
 
 namespace tanu.CruiseAssist
@@ -114,6 +115,12 @@ namespace tanu.CruiseAssist
 			var t = 1.6f / Mathf.Max(10f, angle);
 			var speed = player.controller.actionSail.visual_uvel.magnitude;
 			player.uVelocity = Vector3.Slerp(player.uVelocity, targetPos.normalized * speed, t);
+
+			CruiseAssistPlugin.Extensions.ForEach(extension =>
+			{
+				try { extension.OperateSail(__instance); }
+				catch (Exception e) { LogManager.LogError($"Extension OperateSail error: {e.Message}"); }
+			});
 		}
 	}
 }

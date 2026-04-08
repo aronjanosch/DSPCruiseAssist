@@ -48,6 +48,9 @@ namespace tanu.CruiseAssist
 			harmony.PatchAll(typeof(Patch_UISailPanel));
 			harmony.PatchAll(typeof(Patch_UIStarmap));
 			harmony.PatchAll(typeof(Patch_PlayerMoveSail));
+			harmony.PatchAll(typeof(Patch_PlayerMoveWalk));
+			harmony.PatchAll(typeof(Patch_PlayerMoveDrift));
+			harmony.PatchAll(typeof(Patch_PlayerMoveFly));
 		}
 
 		public void OnDestroy()
@@ -91,6 +94,12 @@ namespace tanu.CruiseAssist
 					CruiseAssistDebugUI.OnGUI();
 				}
 
+				CruiseAssistPlugin.Extensions.ForEach(extension =>
+				{
+					try { extension.OnGUI(); }
+					catch (Exception e) { LogManager.LogError($"Extension OnGUI error: {e.Message}"); }
+				});
+
 				bool resetInputFlag = false;
 
 				resetInputFlag = ResetInput(CruiseAssistMainUI.Rect[CruiseAssistMainUI.wIdx], scale);
@@ -129,6 +138,11 @@ namespace tanu.CruiseAssist
 					CruiseAssist.SelectTargetPlanet = null;
 					CruiseAssist.SelectTargetStar = GameMain.galaxy.StarById(astroId / 100);
 				}
+				CruiseAssistPlugin.Extensions.ForEach(extension =>
+				{
+					try { extension.SetTargetAstroId(astroId); }
+					catch (Exception e) { LogManager.LogError($"Extension SetTargetAstroId error: {e.Message}"); }
+				});
 			}
 
 			if (GameMain.localPlanet != null)

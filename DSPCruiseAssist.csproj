@@ -96,6 +96,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CruiseAssistExtensionAPI.cs" />
+    <Compile Include="CruiseAssistPlugin.cs" />
     <Compile Include="commons\ConfigManager.cs" />
     <Compile Include="commons\EnumUtils.cs" />
     <Compile Include="commons\ListUtils.cs" />
@@ -107,6 +109,9 @@
     <Compile Include="enum\CruiseAssistState.cs" />
     <Compile Include="Patch\Patch_GameMain.cs" />
     <Compile Include="Patch\Patch_PlayerMoveSail.cs" />
+    <Compile Include="Patch\Patch_PlayerMoveWalk.cs" />
+    <Compile Include="Patch\Patch_PlayerMoveDrift.cs" />
+    <Compile Include="Patch\Patch_PlayerMoveFly.cs" />
     <Compile Include="Patch\Patch_UISailPanel.cs" />
     <Compile Include="Patch\Patch_UIStarmap.cs" />
     <Compile Include="Patch\Patch_UITechTree.cs" />
