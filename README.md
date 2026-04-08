@@ -6,6 +6,29 @@ Thanks for the great mod!
 たぬさんのMOD [CruiseAssist](https://dsp.thunderstore.io/package/tanu/CruiseAssist/) の引き継ぎです。
 すばらしいMODに感謝します！
 
+## Building from source
+
+1. Install the [.NET SDK](https://dotnet.microsoft.com/download) and the assembly publicizer tool:
+   ```
+   dotnet tool install -g BepInEx.AssemblyPublicizer.Cli
+   ```
+
+2. Copy `Directory.Build.props.template` to `Directory.Build.props` and set the two paths for your machine:
+   - `GameManagedPath` — path to `<DSP install>\DSPGAME_Data\Managed`
+   - `BepInExCorePath` — path to `<DSP install>\BepInEx\core` (r2modman users: use the profile's BepInEx\core folder)
+
+3. Generate the publicized game assembly (once, or after game updates):
+   ```
+   assembly-publicizer "<GameManagedPath>\Assembly-CSharp.dll" --output "<GameManagedPath>\publicized_assemblies\Assembly-CSharp_publicized.dll"
+   ```
+
+4. Build:
+   ```
+   dotnet build DSPCruiseAssist.csproj -c Release
+   ```
+
+The output DLL will be at `bin\Release\DSPCruiseAssist.dll`.
+
 ## What's this?
 
 Adjust the orientation to the target planet or star when moving between planets or star systems.
